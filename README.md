@@ -1,37 +1,20 @@
 # ADB for ARM
-[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-adb--arm-green.svg?style=flat)](https://android-arsenal.com/details/1/2232)
 
-This is an *all-in-one* script to build the Android **adb** tool (*v. 1.0.31*) for **ARM architecture**. When executed, the script will download all the necessary files and it will run a custom makefile to build the adb.
+This is an *all-in-one* script to build the Android **adb** tool (*v. 1.0.32*) for **ARM architecture**. When executed, the script will download all the necessary files and it will run a custom makefile to build the adb.
 
 References
 --
 
- - [Android.ServerBox] *(which contains the most useful information)*
- - [XDA]
- - [StackOverflow]
-
+ - [AskUbuntu]
+ - [Arch package]
+ - [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-adb--arm-green.svg?style=flat)](https://android-arsenal.com/details/1/2232)
 
 
 Requirements
 --
  - a Git client
- - an **ARM cross compile toolchain** (you can get one from [YOCTOproject])
+ - an ARM machine (tested on Raspberry Pi 3 with Raspbian Jessie)
  
-
-Setup
---
-The script should be ready to execute without any configuration, except for the *TOOLCHAIN* variable inside **makefile.sample**:
-
-```
-...
-#TODO change TOOLCHAIN variable to your toolchain path 
-TOOLCHAIN= /opt/poky/1.5/sysroots/x86_64-pokysdk-linux/usr/bin/arm-poky-linux-gnueabi/arm-poky-linux-gnueabi-
-
-CC= $(TOOLCHAIN)gcc
-LD= $(TOOLCHAIN)gcc
-CXX=$(CC)
-...
-```
 
 Run
 --
@@ -77,7 +60,5 @@ OTHER DEALINGS IN THE SOFTWARE.
 For more information, please refer to <http://unlicense.org/>
 ```
 
-[YOCTOproject]:http://downloads.yoctoproject.org/releases/yocto/yocto-1.5/toolchain/
-[Android.ServerBox]:http://android.serverbox.ch/?p=1217
-[XDA]:http://forum.xda-developers.com/showthread.php?t=1924492
-[StackOverflow]:http://stackoverflow.com/questions/5904765/build-android-adb-for-arm-processor
+[AskUbuntu]:http://askubuntu.com/questions/638256/adb-on-arm7-with-ubuntu-14-04
+[Arch package]:https://git.archlinux.org/svntogit/community.git/commit/?h=packages/android-tools&id=6a03c4736c9734f5ac3d6b5b912605690a6eaa5f

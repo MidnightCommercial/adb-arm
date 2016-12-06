@@ -1,11 +1,12 @@
 #         CONFIG
 # -------------------------
 
-# Branch to checkout from Android source code repo
-branch=android-4.4.4_r2.0.1
+pkgver=6.0.1_r46
+branch=android-$pkgver
 
-# Makefile to use (will be automatically copied into system/core/adb)
-makefile=makefile.sample
+buildscript=build.sh
+
+patchfile=fix_build.patch
 
 
 # DOWNLOAD necessary files
@@ -17,26 +18,21 @@ cd android-adb
 mkdir system
 cd system
 git clone -b $branch https://android.googlesource.com/platform/system/core
-git clone -b $branch https://android.googlesource.com/platform/system/extras
 cd ..
-mkdir external
-cd external
-git clone -b $branch https://android.googlesource.com/platform/external/zlib
-git clone -b $branch https://android.googlesource.com/platform/external/openssl
-git clone -b $branch https://android.googlesource.com/platform/external/libselinux
-cd ..
-
 
 # MAKE
 # -------------------------
 echo "\n>> Copying makefile into system/core/adb...\n"
-cp ../$makefile system/core/adb/makefile -f
-cd system/core/adb/
-echo "\n>> Make... \n"
-make clean
-make
+cp ../$buildscript system -f
+cd system
+
+echo "\n>> Applying patch... \n"
+patch -p1 < ../../$patchfile
+
+echo "\n>> Building... \n"
+PKGVER=$pkgver bash build.sh
+
 echo "\n>> Copying adb back into current dir...\n"
-cp adb ../../../../
+cp adb ../../
+
 echo "\n>> FINISH!\n"
-
-
